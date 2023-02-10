@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const HamburgerMenu = ({ onToggle }) => {
-  let menu;
+const menuRef = useRef(null);
+const [hidden, setHidden] = useState(false);
 
-  const handleClick = () => {
-    onToggle();
-  };
+useEffect(() => {
+const menu = menuRef.current;
+if (!menu) {
+  return;
+}
 
-  return (
-    <hamburger-menu ref={node => menu = node} onClick={handleClick}>
-      ☰
-    </hamburger-menu>
-  );
+const handleClick = () => {
+  onToggle();
+  setHidden(!hidden);
+};
+
+menu.addEventListener('click', handleClick);
+
+return () => {
+  menu.removeEventListener('click', handleClick);
+};
+}, [onToggle, hidden]);
+
+return (
+<hamburger-menu ref={menuRef} style={{ display: hidden ? 'none' : 'block' }}>
+☰
+</hamburger-menu>
+);
 };
 
 export default HamburgerMenu;
