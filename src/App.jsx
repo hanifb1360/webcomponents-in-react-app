@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "../src/components/Navbar";
+import Navbar from "./components/Navbar";
+import Home from "./pages/home/Home";
 // import Dropdown from "./Dropdown";
 
 function App() {
@@ -8,10 +9,8 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* <Dropdown
-        selectedOption={selectedOption}
-        setSelectedOption={setSelectedOption}
-      /> */}
+      
+  <Home />
     </div>
   );
 }
